@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import api from "../common/api";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [errMessage, setErrMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     username: "",
@@ -14,6 +16,8 @@ const Signup = () => {
   });
 
   const [imagePreview, setImagePreview] = useState(null);
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,10 +37,12 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     try {
       const response = await api.post("/user/register", formData);
       if (response.status === 201) {
-        toast.success(response.response.data.message)
+        toast.success(response.response?.data?.detail);
+        window.localStorage.setItem('verify-email', formData.email)
         setFormData({
           name: "",
           username: "",
@@ -45,10 +51,14 @@ const Signup = () => {
           occupation: "",
           image: null,
         });
+      navigate('/verify-otp')
       }
     } catch (error) {
       console.error(error);
-      setErrMessage(error.response.data?.message);
+      setErrMessage(error.response?.data?.detail);
+    }
+    finally{
+      setIsLoading(false)
     }
   };
 
@@ -158,13 +168,16 @@ const Signup = () => {
               )}
             </div>
           </div>
+         {errMessage && <div className="flex justify-end">
+          <p className="text-red-500">  {errMessage} </p>
+          </div>}
 
           <div>
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300"
             >
-              Sign Up
+              {isLoading ? "Loading..." : "Sign Up"}
             </button>
           </div>
         </form>

@@ -7,8 +7,9 @@ import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } 
 
 // PAGES
 
-import Home from './pages/Home.jsx'
+import Home from './pages/user/Home.jsx'
 import Signup from './components/user/Signup.jsx'
+import VerifyOTP from './pages/user/VerifyOTP.jsx'
 
 
 const router = createBrowserRouter(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App/>}>
       <Route index element={<Home/>}/>
       <Route path="/signup" element={<Signup/>}/>
+      <Route path='/verify-otp' element={<VerifyOTP/>} />
     </Route>
   )
 )
