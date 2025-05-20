@@ -10,6 +10,7 @@ import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } 
 import Home from './pages/user/Home.jsx'
 import Signup from './components/user/Signup.jsx'
 import VerifyOTP from './pages/user/VerifyOTP.jsx'
+import Login from './pages/user/Login.jsx'
 
 
 const router = createBrowserRouter(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route index element={<Home/>}/>
       <Route path="/signup" element={<Signup/>}/>
       <Route path='/verify-otp' element={<VerifyOTP/>} />
+      <Route path="/login" element={<Login/>}  />
     </Route>
   )
 )

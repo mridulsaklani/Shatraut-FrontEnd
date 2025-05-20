@@ -1,14 +1,19 @@
 import React, { useRef, useState, useEffect } from 'react';
 import api from '../../components/common/api';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const VerifyOTP = () => {
   const [errMessage, setErrMessage] = useState(null)
   const [verifyEmail, setVerifyEmail] = useState(null)
+  const [isActive, setIsActive] = useState(false)
 
   const otpLength = 6;
   const [otp, setOtp] = useState(Array(otpLength).fill(''));
 
   const inputsRef = useRef([]);
+
+  const navigate = useNavigate
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -50,14 +55,23 @@ const VerifyOTP = () => {
   
 
   const handleSubmit = async() => {
-    const fullOtp = otp.join('');
+    setIsActive(true)
+    const otps = otp.join('');
+    const email = verifyEmail
     try {
-        const response = await api.post('/verify-otp')
-        if(response.data === 200){
+        const response = await api.patch('/user/verify-otp', {otp: otps, email})
+        if(response.status === 200){
             window.localStorage.removeItem("verify-otp")
+            toast.success("OPT verified successfully")
+            navigate("/login")
+            setErrMessage("")
         }
     } catch (error) {
-        
+        console.error(error)
+        setErrMessage(error?.response?.data?.detail || "Something went wrong")
+    }
+    finally{
+        setIsActive(false)
     }
   };
 
@@ -84,14 +98,14 @@ const VerifyOTP = () => {
           />
         ))}
       </div>
-      {errMessage && <div className='flex items-end'>
+      {errMessage && <div className='flex justify-end'>
          <p className='text-red-500'>{errMessage}</p>
         </div>}
       <button
         onClick={handleSubmit}
         className="px-6 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition"
       >
-        Submit
+       {isActive ? "Submitting" : "Submit"} 
       </button>
       </div>
     </div>
