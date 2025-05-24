@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import api from '../../components/common/api';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errMessage, setErrMessage] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,16 +25,21 @@ const Login = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setIsLoading(true)
     try {
-       const response = await api.post('/user/login', {formData})
+       const response = await api.post('/user/login', formData, {withCredentials: true})
        if(response.status === 200){
         setErrMessage(null)
+        toast.success("User login successfully")
         navigate('/')
        }
     } catch (error) {
         console.error(error)
         setErrMessage(error?.response?.data?.detail || "Something went wrong")
     } 
+    finally{
+      setIsLoading(false)
+    }
   };
 
   return (
@@ -76,12 +83,15 @@ const Login = () => {
             </button>
           </div>
         </div>
+        {errMessage && <div className='flex justify-end'>
+          <p className='text-red-500'>{errMessage}</p>
+          </div>}
 
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 cursor-pointer"
         >
-          Login
+          {isLoading ? "Submitting..." : "Login"}
         </button>
       </form>
     </div>

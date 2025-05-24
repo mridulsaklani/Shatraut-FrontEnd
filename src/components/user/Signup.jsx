@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import api from "../common/api";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 
 const Signup = () => {
   const [errMessage, setErrMessage] = useState(null);
@@ -179,6 +180,9 @@ const Signup = () => {
             >
               {isLoading ? "Loading..." : "Sign Up"}
             </button>
+          </div>
+          <div className="flex justify-center items-center">
+            <p>Have an account <Link to="/login" className="text-blue-500 underline"> Sign in </Link></p>
           </div>
         </form>
       </div>
