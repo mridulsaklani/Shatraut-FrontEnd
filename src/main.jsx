@@ -11,6 +11,7 @@ import Home from './pages/user/Home.jsx'
 import Signup from './components/user/Signup.jsx'
 import VerifyOTP from './pages/user/VerifyOTP.jsx'
 import Login from './pages/user/Login.jsx'
+import CreateBlog from './pages/user/CreateBlog.jsx'
 
 
 const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<Signup/>}/>
       <Route path='/verify-otp' element={<VerifyOTP/>} />
       <Route path="/login" element={<Login/>}  />
+      <Route path="/create-blog" element={<CreateBlog/>} />
     </Route>
   )
 )
