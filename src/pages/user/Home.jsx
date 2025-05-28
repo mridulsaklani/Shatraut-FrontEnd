@@ -15,7 +15,7 @@ const Home = () => {
       const response = await api.get('/blog/get-all-blogs', {withCredentials: true})
       if(response.status === 200){
         setBlogData(response.data?.blogdata)
-        print(response.data?.blogdata)
+        
       }
     } catch (error) {
       console.error(error)
@@ -42,7 +42,7 @@ const Home = () => {
                    </div>
                  </div>
                  <div className="w-1/2 flex justify-end items-center gap-5 text-xl">
-                 <span className='text-white bg-blue-600 rounded-full px-5 py-1.5 text-sm capitalize'>{item?.category}</span>
+                 <span className='text-white bg-blue-600 rounded-full px-5 py-1.5 text-sm capitalize cursor-pointer'>{item?.category}</span>
                   <span className='h-9 w-9 rounded-full flex justify-center items-center bg-stone-100'><CiMenuKebab /></span>
                  </div>
               </div>

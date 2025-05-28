@@ -66,7 +66,7 @@ const Navbar = () => {
 
           </motion.ul>
           </div>
-          {isAuthenticate? <Link className='bg-blue-600 text-white px-5 py-2 rounded-full shadow hover:bg-blue-700 transition duration-300' onClick={()=>setShowLogout(true)}>Logout</Link> :<Link to={'signup'} className="bg-blue-600 text-white px-5 py-2 rounded-full shadow hover:bg-blue-700 transition duration-300">
+          {isAuthenticate ? <Link className='bg-blue-600 text-white px-5 py-2 rounded-full shadow hover:bg-blue-700 transition duration-300' onClick={()=>setShowLogout(true)}>Logout</Link> :<Link to={'signup'} className="bg-blue-600 text-white px-5 py-2 rounded-full shadow hover:bg-blue-700 transition duration-300">
             Get Started
           </Link>}
         </div>
