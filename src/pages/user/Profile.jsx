@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import ProfileComponent from '../../components/user/ProfileComponent'
 import api from '../../components/common/api'
+import BlogsProfile from '../../components/user/BlogsProfile'
 
 const Profile = () => {
     const [userData, setUserData] = useState({})
@@ -30,6 +31,7 @@ const Profile = () => {
   return (
     <>
       <ProfileComponent userData={userData} userDataLoading={userDataLoading}/>
+      <BlogsProfile/>
     </>
   )
 }
