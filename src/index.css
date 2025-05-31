@@ -5,3 +5,14 @@ body{
      font-family: "Open Sans", sans-serif;
     scroll-behavior: smooth;
 }
+
+button, a{
+    cursor: pointer;
+}
+
+.ant-popover{
+    display: none !important
+}
+.ant-popover.css-5wnjas.css-5wnjas.ant-popover-placement-left{
+    display: none !important
+}

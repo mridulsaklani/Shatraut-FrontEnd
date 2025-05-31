@@ -6,6 +6,7 @@ import BlogsProfile from '../../components/user/BlogsProfile'
 const Profile = () => {
     const [userData, setUserData] = useState({})
     const [userDataLoading, setUserDataLoading] = useState(false)
+    const [blogCount, setBlogCount] = useState(0)
 
 
     const getUserData = async()=>{
@@ -24,14 +25,26 @@ const Profile = () => {
         }
     }
 
+    const getBlogCount = async()=>{
+      try {
+        const response = await api.get(`/blog/get_blog_count`, {withCredentials: true})
+        if(response.status === 200){
+          setBlogCount(response?.data?.count)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
     useEffect(() => {
       getUserData()
+      getBlogCount()
     }, [])
     
   return (
     <>
       <ProfileComponent userData={userData} userDataLoading={userDataLoading}/>
-      <BlogsProfile/>
+      <BlogsProfile blogCount={blogCount}/>
     </>
   )
 }

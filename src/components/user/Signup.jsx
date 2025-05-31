@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 
 
+import { FaCircleXmark } from "react-icons/fa6";
+
 const Signup = () => {
   const [errMessage, setErrMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
@@ -40,6 +42,8 @@ const Signup = () => {
     e.preventDefault();
     setIsLoading(true)
     try {
+      if (formData.password.length < 8) return setErrMessage('Password should more then 7 words')
+      if (formData.username.length < 6) return setErrMessage('username should more then 6 words')
       const response = await api.post("/user/register", formData);
       if (response.status === 201) {
         toast.success(response.response?.data?.detail);
@@ -65,14 +69,14 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-white px-4">
-      <div className="bg-white shadow-xl rounded-xl p-8 max-w-xl w-full space-y-6">
+      <div className="bg-white shadow-xl rounded-xl p-8 w-[690px]">
         <h2 className="text-2xl font-bold text-center text-blue-600">
           Create Account
         </h2>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-3">
-            <div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-2">
               <label className="block text-sm font-medium text-gray-700">
                 Name
               </label>
@@ -87,7 +91,7 @@ const Signup = () => {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-2">
               <label className="block text-sm font-medium text-gray-700">
                 Username
               </label>
@@ -102,7 +106,7 @@ const Signup = () => {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-2">
               <label className="block text-sm font-medium text-gray-700">
                 Email
               </label>
@@ -117,7 +121,7 @@ const Signup = () => {
               />
             </div>
 
-            <div>
+            <div className="flex flex-col gap-2">
               <label className="block text-sm font-medium text-gray-700">
                 Password
               </label>
@@ -130,9 +134,10 @@ const Signup = () => {
                 placeholder="••••••••"
                 required
               />
+             
             </div>
 
-            <div>
+            <div className="flex flex-col gap-2">
               <label className="block text-sm font-medium text-gray-700">
                 Occupation
               </label>
@@ -150,7 +155,7 @@ const Signup = () => {
               </select>
             </div>
 
-            <div>
+            <div className="flex flex-col gap-2">
               <label className="block text-sm font-medium text-gray-700">
                 Profile Image
               </label>

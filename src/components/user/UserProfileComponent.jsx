@@ -1,19 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Skeleton from '@mui/material/Skeleton';
-import Box from '@mui/material/Box';
 
-const ProfileComponent = ({ userData, userDataLoading }) => {
 
-  const date = new Date(userData?.created_at).toLocaleDateString();
+const UserProfileComponent = ({userData, userDataLoading}) => {
 
-  console.log(date)
+
+    const navigate = useNavigate()
+    const date = new Date(userData?.created_at).toLocaleDateString();
   return (
     <>
       <div className="max-w-7xl mx-auto py-24 flex flex-col gap-10">
         <div className="flex justify-between items-center gap-5">
           <div></div>
-          <div><Link to={`update-profile/${userData._id}`} className="bg-blue-500 px-5 py-2 rounded-lg text-white hover:bg-blue-600 transition-all duration-300">  Edit Profile </Link></div>
+          <button className='bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white rounded-lg px-5 py-2' onClick={()=>navigate(-1)}>  Back </button>
         </div>
         <div className="flex items-center justify-center w-full gap-5 ">
           <div className="w-1/4">
@@ -50,7 +50,7 @@ const ProfileComponent = ({ userData, userDataLoading }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ProfileComponent;
+export default UserProfileComponent

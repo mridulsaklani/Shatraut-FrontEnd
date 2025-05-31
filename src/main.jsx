@@ -16,6 +16,7 @@ import CreateBlog from './pages/user/CreateBlog.jsx'
 import Profile from './pages/user/Profile.jsx'
 import CommonOutlet from './pages/common/CommonOutlet.jsx'
 import UpdateProfile from './pages/user/UpdateProfile.jsx'
+import UserProfile from './pages/user/UserProfile.jsx'
 
 
 const router = createBrowserRouter(
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
         <Route index element={<Profile/>}/>
         <Route path='update-profile/:id' element={<UpdateProfile/>}/>
       </Route>
+      <Route path='/user-profile/:id' element={<UserProfile/>}/>
      
     </Route>
   )

@@ -44,14 +44,14 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto px-4  py-4 flex justify-between items-center">
       
         <div className="text-2xl font-bold text-blue-600 tracking-tight w-1/5">
-          Straut
+          <Link to={'/'}>Straut</Link>
         </div>
 
         
         <ul className="hidden md:flex gap-8 text-gray-700 font-medium w-2/5">
           <li className=""><Link className='hover:text-blue-600 transition duration-300 cursor-pointer' to={'/'}>Home </Link></li>
-          <li className=""><Link className='hover:text-blue-600 transition duration-300 cursor-pointer' to={'/about'}>about </Link></li>
-          {isAuthenticate && <li className=""><Link className='hover:text-blue-600 transition duration-300 cursor-pointer' to={'/profile'}>profile </Link></li>}
+          <li className=""><Link className='hover:text-blue-600 transition duration-300 cursor-pointer' to={'/about'}>About </Link></li>
+          {isAuthenticate && <li className=""><Link className='hover:text-blue-600 transition duration-300 cursor-pointer' to={'/profile'}>Profile </Link></li>}
           
         </ul>
 
