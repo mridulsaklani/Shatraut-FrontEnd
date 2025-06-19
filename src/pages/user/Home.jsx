@@ -85,7 +85,7 @@ const Home = () => {
               </div>
               <div className='flex justify-end gap-4'>
               <div className='flex items-center gap-3 bg-sky-100 rounded-full pr-5 cursor-auto'><button className="h-9 w-9 cursor-pointer rounded-full bg-blue-600 hover:bg-blue-700 text-white flex justify-center items-center hover:scale-103 transition-all duration-300" onClick={()=>handleLike(item._id)}>
-                <span className='text-lg'><FaRegThumbsUp /></span>
+                <span className='text-lg'> {item?.isLiked ? <FaThumbsUp/> :  <FaRegThumbsUp /> }</span>
               </button> <span>{item?.likes}</span></div>
               <div className='flex items-center gap-3 bg-sky-100 rounded-full pr-5 cursor-auto'><button className="h-9 w-9 cursor-pointer rounded-full bg-blue-600 hover:bg-blue-700 text-white flex justify-center items-center hover:scale-103 transition-all duration-300">
                 <span className='text-lg'><FaCommentDots /></span>
