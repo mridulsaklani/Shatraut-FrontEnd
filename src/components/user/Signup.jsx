@@ -69,7 +69,7 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-white px-4">
-      <div className="bg-white shadow-xl rounded-xl p-8 w-[690px]">
+      <div className="bg-white shadow-xl rounded-xl p-8 w-[690px] flex flex-col gap-5">
         <h2 className="text-2xl font-bold text-center text-blue-600">
           Create Account
         </h2>
