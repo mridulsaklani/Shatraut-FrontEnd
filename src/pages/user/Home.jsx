@@ -38,6 +38,31 @@ const Home = () => {
        const response = await api.patch('/blog/like', {blog_id: id}, {withCredentials: true})
        if(response.status === 200){
         toast.success('liked successfully')
+        setBlogData(prev =>
+        prev.map(blog => blog._id === id ? { 
+          ...blog, 
+          isLiked: true, 
+          likes: blog.likes + 1 
+        } : blog)
+      );
+       }
+     } catch (error) {
+      console.error(error)
+     }
+  }
+  const handleUnLike =async (id)=>{
+     try {
+       const response = await api.patch('/blog/unlike', {blog_id: id}, {withCredentials: true})
+       if(response.status === 200){
+        toast.success('unliked successfully')
+        setBlogData(prev =>
+        prev.map(blog => blog._id === id ? { 
+          ...blog, 
+          isLiked: false, 
+          likes: blog.likes - 1 
+        } : blog)
+      );
+        
        }
      } catch (error) {
       console.error(error)
@@ -84,7 +109,7 @@ const Home = () => {
                    </div>
               </div>
               <div className='flex justify-end gap-4'>
-              <div className='flex items-center gap-3 bg-sky-100 rounded-full pr-5 cursor-auto'><button className="h-9 w-9 cursor-pointer rounded-full bg-blue-600 hover:bg-blue-700 text-white flex justify-center items-center hover:scale-103 transition-all duration-300" onClick={()=>handleLike(item._id)}>
+              <div className='flex items-center gap-3 bg-sky-100 rounded-full pr-5 cursor-auto'><button className="h-9 w-9 cursor-pointer rounded-full bg-blue-600 hover:bg-blue-700 text-white flex justify-center items-center hover:scale-103 transition-all duration-300" onClick={()=> item?.isLiked === true ? handleUnLike(item._id) : handleLike(item._id)}>
                 <span className='text-lg'> {item?.isLiked ? <FaThumbsUp/> :  <FaRegThumbsUp /> }</span>
               </button> <span>{item?.likes}</span></div>
               <div className='flex items-center gap-3 bg-sky-100 rounded-full pr-5 cursor-auto'><button className="h-9 w-9 cursor-pointer rounded-full bg-blue-600 hover:bg-blue-700 text-white flex justify-center items-center hover:scale-103 transition-all duration-300">
