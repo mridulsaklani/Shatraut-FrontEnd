@@ -21,8 +21,10 @@ import UserProfile from './pages/user/UserProfile.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App/>}>
-      <Route index element={<Home/>}/>
+    <Route path="/" element={
+    <App/>
+    }>
+      <Route index element= {<ProtectedRoute allowedRoles={['admin', 'user']}><Home/></ProtectedRoute>}/>
       <Route path="/signup" element={<Signup/>}/>
       <Route path='/verify-otp' element={<VerifyOTP/>} />
       <Route path="/login" element={<Login/>}  />

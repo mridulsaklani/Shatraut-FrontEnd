@@ -16,3 +16,12 @@ button, a{
 .ant-popover.css-5wnjas.css-5wnjas.ant-popover-placement-left{
     display: none !important
 }
+
+.ProseMirror-focused{
+    outline: none;
+}
+
+.blog h2{
+    font-size: 24px;
+    font-weight: 700;
+}

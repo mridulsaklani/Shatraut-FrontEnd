@@ -5,6 +5,7 @@ import { FaCircleXmark } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
 import api from "../../components/common/api";
 import { toast } from "react-toastify";
+import parse from 'html-react-parser'
 
 const CreateBlog = () => {
   const [title, setTitle] = useState(false);
@@ -101,6 +102,14 @@ const CreateBlog = () => {
               Upload
             </button>
           </div>
+        </div>
+        <div className="border-b-1 border-stone-300"></div>
+        <div className="flex flex-col gap-6 blog">
+          <h2 className="text-2xl font-bold">Preview:</h2>
+          <div className="bg-blue-50 rounded-2xl p-8">
+            {formData.content ? parse(formData.content) : "No preview available"}
+          </div>
+
         </div>
       </div>
     </>
